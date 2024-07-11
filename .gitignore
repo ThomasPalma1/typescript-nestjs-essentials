@@ -1,5 +1,5 @@
 # compiled output
-/dist
+/nestjs-task-management/dist
 /nestjs-task-management/node_modules
 /build
 
