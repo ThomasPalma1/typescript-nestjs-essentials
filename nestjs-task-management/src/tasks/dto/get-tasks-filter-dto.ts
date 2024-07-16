@@ -1,8 +1,12 @@
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { TasksStatus } from '../tasks.model';
 
 export class GetTasksFilterDTO {
-  status?: TasksStatus;
-  search?: string;
+  @IsOptional()
+  @IsEnum(TasksStatus)
+  status: TasksStatus;
+
+  @IsOptional()
+  @IsString()
+  search: string;
 }
-// Put the sign '?' in front of the attributes
-// indicates that they are optional and not mandatory.
