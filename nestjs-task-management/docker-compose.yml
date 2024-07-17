@@ -1,0 +1,19 @@
+version: "3.18"
+
+services:
+  db:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nestjs-task-management
+
+  adminer:
+    container_name: adminer_ui
+    image: adminer
+    ports:
+      - "8080:8080"
+
