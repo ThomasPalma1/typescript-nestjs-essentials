@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
 import { Task } from './tasks.entity';
 import { Injectable } from '@nestjs/common';
-import { createTaskDTO } from './dto/create-task.dto';
 import { TasksStatus } from './tasks-status.enum';
+import { createTaskDTO } from './dto/create-task.dto';
 
 @Injectable()
 export class TaskRepository extends Repository<Task> {
