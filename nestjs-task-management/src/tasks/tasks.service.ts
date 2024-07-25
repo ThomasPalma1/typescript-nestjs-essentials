@@ -9,7 +9,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class TasksService {
   constructor(
     @InjectRepository(Task)
-    private tasksRepository: Repository<Task>,
+    private tasksRepository: Repository<Task>, // Using the generic repository
+    private tasksRepositoryCustom: TaskRepository, // Using the custom repository
   ) {}
 
   async getTaskById(id: string): Promise<Task> {
@@ -22,9 +23,7 @@ export class TasksService {
     return found;
   }
 
-  // At this point, code follows the instructions in the NestJS documentation
-
   createTask(createTaskDto: createTaskDTO): Promise<Task> {
-    return this.tasksRepository.createTask(createTaskDto);
+    return this.tasksRepositoryCustom.createTask(createTaskDto);
   }
 }
