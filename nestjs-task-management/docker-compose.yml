@@ -2,7 +2,7 @@ version: "3.18"
 
 services:
   db:
-    container_name: postgres
+    container_name: postgres_nestjs
     image: postgres:latest
     ports:
       - "5433:5432"
@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: nestjs-task-management
 
   adminer:
-    container_name: adminer_ui
+    container_name: adminer_ui_nestjs
     image: adminer
     ports:
       - "8080:8080"
