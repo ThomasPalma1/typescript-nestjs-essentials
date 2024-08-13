@@ -15,6 +15,8 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
+import { GetUser } from 'src/auth/get-user.decorator';
+import { User } from 'src/auth/users.entity';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
@@ -37,8 +39,11 @@ export class TasksController {
   }
 
   @Post()
-  createTask(@Body() createTaskDto: createTaskDTO): Promise<Task> {
-    return this.tasksService.createTask(createTaskDto);
+  createTask(
+    @Body() createTaskDto: createTaskDTO,
+    @GetUser() user: User,
+  ): Promise<Task> {
+    return this.tasksService.createTask(createTaskDto, user);
   }
 
   @Patch('/:id/status')
