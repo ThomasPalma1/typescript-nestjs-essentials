@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TasksStatus } from './tasks-status.enum';
 import { GetTasksFilterDTO } from './dto/get-tasks-filter.dto';
 import { User } from 'src/auth/users.entity';
+import { GetUser } from 'src/auth/get-user.decorator';
 
 @Injectable()
 export class TasksService {
@@ -20,8 +21,8 @@ export class TasksService {
     return this.tasksRepositoryCustom.getTasks(filterDto, user);
   }
 
-  async getTaskById(id: string): Promise<Task> {
-    const found = await this.tasksRepository.findOne({ where: { id } });
+  async getTaskById(id: string, @GetUser() user: User): Promise<Task> {
+    const found = await this.tasksRepository.findOne({ where: { id, user } });
 
     if (!found) {
       throw new NotFoundException(`Task with ID "${id}" not found`);
@@ -38,13 +39,13 @@ export class TasksService {
     }
   }
 
-  async updateTaskStatus(id: string, status: TasksStatus): Promise<Task> {
-    const task = await this.getTaskById(id);
-    task.status = status;
-    await this.tasksRepository.save(task);
+  // async updateTaskStatus(id: string, status: TasksStatus): Promise<Task> {
+  //   const task = await this.getTaskById(id);
+  //   task.status = status;
+  //   await this.tasksRepository.save(task);
 
-    return task;
-  }
+  //   return task;
+  // }
 
   createTask(createTaskDto: createTaskDTO, user: User): Promise<Task> {
     return this.tasksRepositoryCustom.createTask(createTaskDto, user);
