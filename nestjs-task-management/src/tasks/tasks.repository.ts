@@ -16,7 +16,7 @@ export class TaskRepository extends Repository<Task> {
     super(Task, dataSource.createEntityManager());
   }
 
-  private logger = new Logger('TasksRepository');
+  private logger = new Logger('TasksRepository', { timestamp: true });
 
   async getTasks(filterDto: GetTasksFilterDTO, user: User): Promise<Task[]> {
     const { status, search } = filterDto;
