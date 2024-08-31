@@ -1,4 +1,4 @@
-import { User } from 'src/auth/users.entity';
+import { User } from '../auth/users.entity';
 import { TasksStatus } from './tasks-status.enum';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';

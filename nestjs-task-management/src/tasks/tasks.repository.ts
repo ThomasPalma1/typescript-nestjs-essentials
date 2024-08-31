@@ -8,7 +8,7 @@ import {
 import { TasksStatus } from './tasks-status.enum';
 import { createTaskDTO } from './dto/create-task.dto';
 import { GetTasksFilterDTO } from './dto/get-tasks-filter.dto';
-import { User } from 'src/auth/users.entity';
+import { User } from '../auth/users.entity';
 
 @Injectable()
 export class TaskRepository extends Repository<Task> {
